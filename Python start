@@ -1,6 +1,6 @@
 #Install pycharm with flathub
 flatpak install flathub com.jetbrains.PyCharm-Community
 
-#add alias withing .bashrc file
+#add alias within .bashrc file
 alias pycharm='nohup flatpak run com.jetbrains.PyCharm-Community </dev/null &>/dev/null & disown'
 
