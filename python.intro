@@ -1,1 +1,56 @@
+# Install pycharm with flathub
+flatpak install flathub com.jetbrains.PyCharm-Community
 
+# Add alias within .bashrc file
+alias pycharm='nohup flatpak run com.jetbrains.PyCharm-Community </dev/null &>/dev/null & disown'
+
+# Make venv file
+python3 -m venv project
+# ls to see file name project
+
+# Activate file
+source project/bin/activate
+# should have (project) before command line
+
+# To deactivate environment
+deactivate
+# will have to activate & deactivate every time for use 
+
+# Delete environment by deleting file
+rm -rf project
+
+# Another way to see if its activated
+which python
+
+# pip install <packageor modular name>
+pip install request 
+
+# If doesnt work 
+py -m  pip install request
+
+# List for all package installs with pip
+py -m pip list
+
+# To install specific version
+py -m pip install requests==2.30.0
+
+# Update and unistall package
+py -m pip install -U requests
+py -m pip unistall requests
+
+# Go out and install those packages
+pip install -r requirments.txt
+
+# The requirments.txt file is filled with module and version of the module. Used to create the necessary environment to run the project. Three major advantages, 1. version control. Avoid compatibilities issues. 2. Speed, install fast. 3. can be pulled and pushed from git to get from different sources. 
+
+# Pip list will show whats installed
+py -m pip list
+
+# To create the file
+pip freeze > requirments.txt
+
+#Error message "/app/pycharm/jbr/bin/java" (2) is still running fix
+#This error message will display a file location which would be switched out during rm.
+# rm "/home/damean/.var/app/com.jetbrains.PyCharm-Community/config/JetBrains/PyCharmCE2024.3/.lock"
+# flatpak kill com.jetbrains.PyCharm-Community
+# rm -rf ~/.var/app/com.jetbrains.PyCharm-Community/cache
