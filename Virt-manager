@@ -1,1 +1,27 @@
+#For Linux Fedora use only
+
+dnf install @virtualization
+#@virtualization uses software layer called a hypervisor like KVM partition a single physical machine into multiple, isolated virtual machines.
+#Also installs Libvirt, and Virt-Manager
+
+#once installed type in command prompt... 
+virt-manager
+
+#Will open up a screen where user selects the little TV with star icon to create a new virtual machine. CLick Forward, when selecting ISO or CDROM install media must, or select browse and browse local, select a raw cd image, will look like a CD as the file image and will end in .iso. If not there must installed through internet.After sleeting open should be good to Forward all the way through until finish and opens. Once in to ssh into need to verify sshd it woking and enabled.
+
+systemctl status sshd
+#Most likely not enabled off start. 
+
+systemctl enable sshd
+#Should enable
+
+passwd
+#Set password before ssh into it 
+
+ip r
+#Gets ip so on main command prompt we can ssh into it.
+
+ssh <user>@<ip of vm>
+#Make sure no spaces on either side of @ and user can be obtained using whoami and ip obtained by ip r. Both from the VM's info not the main host.Should work ifit doesn't could be firewall issue. Terrible, I know just google that if so.
+
 
