@@ -1,0 +1,41 @@
+
+Installation
+
+The easiest way to get Wazuh up and rolling for exploration is to use the Wazuh installation assistant.
+
+    Download and run the Wazuh installation assistant:
+
+curl -sO https://packages.wazuh.com/4.12/wazuh-install.sh && sudo bash ./wazuh-install.sh -a
+
+    Once finished, an output with credentials and ways to access the dashboard will show in the output:
+
+INFO: --- Summary ---
+INFO: You can access the web interface https://<YOUR IP>
+    User: admin
+    Password: <ADMIN_PASSWORD>
+INFO: Installation finished.
+
+sometimes we might want to different ports so we can run httpd and wazuh together so we do..
+
+sudo systemctl stop wazuh-dashboard
+Edit the configuration file:
+Open /etc/wazuh-dashboard/opensearch_dashboards.yml.
+Update the port:
+Find the line server.port: 443 and change it to a non-conflicting port, such as 8443.
+Restart the service:
+sudo systemctl start wazuh-dashboard
+
+
+At this point, you should be able to open your browser and log into the Wazuh dashboard to begin exploring the platform.
+
+    Note: When accessing the dashboard for the first time, the browser shows a warning message stating the certficate is not trusted by a trusted authority. This is expected, and you can choose to accept the certificate anyway, or alternatively configure the system to use a certificate from a trusted authority.
+
+Adding an Agent
+
+Up to this point, this installation will allow you to explore the Wazuh dashboard, and become more familair with its features. If you are curious about adding additional endpoints to monitor, follow the steps laid out in the Wazuh adding an agent documentation.
+Wazuh Tutorials
+
+    Crash Course: An in-depth and complete guide to using Wazuh, configuring endpoints, and exploring its features. This tutorial also walks through deploying Wazuh with docker.
+
+    Creating Dashboards: Wazuh offers the ability to create different dashboards that highlight certain or specific pieces of log data. This tutorial walks you through how to do that.
+
