@@ -1,0 +1,99 @@
+#This file will be used to make a website on Linux fedora (what im currently using) and will be made in the command prompt and can be on standby on a server so it can be accessed by just using the url. 
+
+  
+
+sudo dnf install httpd 
+
+sudo systemctl start httpd 
+
+sudo systemctl enable httpd 
+
+  
+
+#make sure it's up and running using.. 
+
+sudo systemctl status httpd 
+
+  
+
+#Get ip using.. 
+
+ip r 
+
+  
+
+#Want to make it  permanent on firewall type.. 
+
+sudo firewall-cmd --permanent --add-service=http 
+
+  
+
+#Reload it 
+
+sudo firewall-cmd --reload 
+
+  
+
+#does something too.. 
+
+sudo firewall-cmd --permanent --zone=public --add-service=http 
+
+sudo firewall-cmd --reload 
+
+  
+
+#will tell you stuff... 
+
+sudo firewall-cmd --list-all --zone=public 
+
+  
+
+#Go into the config if needed... 
+
+cd /etc/httpd/conf 
+
+  
+
+#To go into the website using a URL type... 
+
+http://<whatevr ip you did all this on>   
+
+  
+
+#By default, Apache looks for files in /var/www/html. You can create your homepage there 
+
+  
+
+#If on Fedora, SELinux is active by default. If you see a "403 Forbidden" error when visiting your IP, it’s usually because the security context needs to be set for your web files: 
+
+sudo chcon -R -t httpd_sys_content_t /var/www/html 
+
+  
+
+#If you want to access this from outside your local home network (like from a friend's house), you'll need to set up Port Forwarding on your router to point port 80 to your Fedora machine's local IP 
+
+  
+
+#To log into your router, you first need its internal address. On your Fedora command prompt, run 
+
+ip route | grep default 
+
+  
+
+#Every router interface is different, but you generally need to find a section labeled "Port Forwarding," "Virtual Servers," or "NAT Forwarding". Create a new rule with these settings:  
+
+  
+
+    Service Name: WebServer 
+
+    External Port: 80 
+
+    Internal Port: 80 
+
+    Protocol: TCP 
+
+    Internal IP: Enter the IP address of your Fedora machine (the one you found with ip r earlier) 
+
+  
+
+#Static IP: Your 
